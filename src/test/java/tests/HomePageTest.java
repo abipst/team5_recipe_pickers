@@ -1,7 +1,7 @@
 package tests;
 
-import java.io.IOException;
 import org.pageobjects.RecipeAtoE;
+import org.pageobjects.RecipeKtoO;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import base.TestBase;
@@ -26,14 +26,14 @@ public class HomePageTest extends TestBase {
 
 
 	@Test(priority=1)
-	public void RecipeAtoETest() throws InterruptedException, IOException {
-		RecipeAtoE recipe = new RecipeAtoE(TestBase.getDriver());
+	public void RecipeAtoETest() throws Exception {
+		//RecipeAtoE recipe = new RecipeAtoE(TestBase.getDriver());
+		RecipeKtoO recipe = new RecipeKtoO(TestBase.getDriver());
 		recipe.click_AtoZ_recipes();
 		recipe.getRecipeInfo();
 	}
 
-	
-	/*
+		/*
 	
 	@Test(priority=2)
 	public void hypothyroidAddOnRec() throws InterruptedException, IOException {
