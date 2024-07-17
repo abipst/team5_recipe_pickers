@@ -41,7 +41,7 @@ public class RecipeKtoO  extends TestBase{
 	
 	int pageCount=0;
 	public void getRecipeInfo() throws Exception {
-		
+				
 		List<WebElement> menuAtoZWebElements=driver.findElements(By.xpath("//table[@class='mnualpha ctl00_cntleftpanel_mnuAlphabets_5 ctl00_cntleftpanel_mnuAlphabets_2']/tbody/tr/td[@onmouseover='Menu_HoverStatic(this)']//a[1]"));
 		
 		List<Recipe> recipeList = new ArrayList<Recipe>();
@@ -55,7 +55,7 @@ public class RecipeKtoO  extends TestBase{
 		int size=menuAtoZWebElements.size();
 		System.out.println("There are "+size+" number of links ordered alphabetically.");
 		int counter=0;
-		for(int i=11; i<12; i++) 
+		for(int i=11; i<=12; i++) 
 		{
 			//String menuLink=driver.findElement(By.xpath("//table[@id='ctl00_cntleftpanel_mnuAlphabets']/tbody/tr/td[@id='ctl00_cntleftpanel_mnuAlphabetsn"+i+"']//a")).getAttribute("href");
 			//System.out.println(menuLink);
@@ -77,7 +77,7 @@ public class RecipeKtoO  extends TestBase{
 				System.out.println("Toal page count is: "+pageCount);
 			  }
 				
-			for(int pg=1; pg<=2/*pageCount*/; pg++) 
+			for(int pg=1; pg<3/*pageCount*/; pg++) 
 			 {
 				try 
 				 {
@@ -205,6 +205,7 @@ public class RecipeKtoO  extends TestBase{
 							
 							if(validRecipe)
 							{
+								//Store Recipe data into Recipe object
 								Recipe recipeInfo = new Recipe();
 								recipeInfo.setRecipe_id(recipe_id);
 								recipeInfo.setRecipe_name(recipe_id);
@@ -214,12 +215,12 @@ public class RecipeKtoO  extends TestBase{
 								//recipeInfo.setRecipe_Description(desc);
 								//recipeInfo.setRecipe_Description(desc);
 								
-								
-								if(counter == 0)
-								{
+								counter= counter + 1;
+								//if(counter == 0)
+								//{
 									System.out.println("*Write to excel ");
-									ExcelUtility.storeRecipeInfo(recipeInfo, 2, 2);
-								}
+									ExcelUtility.storeRecipeInfo(recipeInfo, counter, 0);
+								//}
 								
 								System.out.println("*valid Recipes--Recipe URL : "+stringurl);
 								//System.out.println("Recipe URL : "+stringurl);
@@ -233,7 +234,7 @@ public class RecipeKtoO  extends TestBase{
 								//System.out.println("Preparation method : "+method);
 								//System.out.println("Nutrient values : "+nutritionValue);
 								//System.out.println("Ingredients : "+ingredientsValue);
-								counter= counter + 1;
+								
 							}	
 							
 						 } 
