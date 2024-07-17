@@ -55,7 +55,7 @@ public class RecipeKtoO  extends TestBase{
 		int size=menuAtoZWebElements.size();
 		System.out.println("There are "+size+" number of links ordered alphabetically.");
 		int counter=0;
-		for(int i=11; i<=12; i++) 
+		for(int i=15; i<16; i++) 
 		{
 			//String menuLink=driver.findElement(By.xpath("//table[@id='ctl00_cntleftpanel_mnuAlphabets']/tbody/tr/td[@id='ctl00_cntleftpanel_mnuAlphabetsn"+i+"']//a")).getAttribute("href");
 			//System.out.println(menuLink);
@@ -67,7 +67,7 @@ public class RecipeKtoO  extends TestBase{
 			driver.findElement(By.xpath("//div[@id='maincontent']/div/div[@style='text-align:right;padding-bottom:15px;'][1]/a"));
 			if(alphabet.equals("P"))
 			 {
-				pageCount=1;
+				pageCount=9;
 			 }
 			
 			else 

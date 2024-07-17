@@ -2,6 +2,7 @@ package tests;
 
 import org.pageobjects.RecipeAtoE;
 import org.pageobjects.RecipeKtoO;
+import org.pageobjects.Recipe_LCHF_KtoO;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import base.TestBase;
@@ -27,8 +28,8 @@ public class HomePageTest extends TestBase {
 
 	@Test(priority=1)
 	public void RecipeAtoETest() throws Exception {
-		//RecipeAtoE recipe = new RecipeAtoE(TestBase.getDriver());
 		RecipeKtoO recipe = new RecipeKtoO(TestBase.getDriver());
+		//Recipe_LCHF_KtoO recipe = new Recipe_LCHF_KtoO(TestBase.getDriver());
 		recipe.click_AtoZ_recipes();
 		recipe.getRecipeInfo();
 	}

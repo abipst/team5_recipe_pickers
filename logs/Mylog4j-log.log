@@ -297,3 +297,23 @@ java.io.EOFException: Unexpected end of ZLIB input stream
 [INFO ]2024-07-1623:23:56.784[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
 [INFO ]2024-07-1623:28:17.755[main]utils.LoggerLoad1)-Inside init
 [INFO ]2024-07-1623:28:17.757[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:31:14.234[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:31:14.237[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:37:28.421[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:37:28.424[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:39:05.516[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:39:05.519[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:41:16.129[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:41:16.131[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:43:18.865[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:43:18.868[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:43:59.367[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:43:59.370[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:44:40.833[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:44:40.835[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:46:52.199[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:46:52.201[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:48:47.832[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:48:47.834[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1705:49:26.501[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1705:49:26.503[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
