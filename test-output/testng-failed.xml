@@ -7,6 +7,7 @@
         <methods>
           <include name="RecipeAtoETest"/>
           <include name="setup"/>
+          <include name="teardown"/>
         </methods>
       </class> <!-- tests.HomePageTest -->
     </classes>

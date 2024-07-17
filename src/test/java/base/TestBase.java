@@ -43,9 +43,9 @@ public class TestBase {
 
 		String browserName = prop.getProperty("browser");
 
-		// TODO REPLACE THIS WITH SWITCH STATEMENTS
+		System.out.println("Hi"+browserName);
 		if (browserName.equalsIgnoreCase("chrome")) {
-
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Alice\\git\\team5_recipe_pickers\\src\\test\\resources\\Drivers\\chromedriver.exe");
 			ChromeOptions options=new ChromeOptions();
 			options.addArguments("headless");
 			driver=new ChromeDriver(options);
