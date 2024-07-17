@@ -2,6 +2,8 @@ package tests;
 
 import java.io.IOException;
 import org.pageobjects.RecipeAtoE;
+import org.pageobjects.Recipes_FtoJ;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import base.TestBase;
@@ -32,88 +34,25 @@ public class HomePageTest extends TestBase {
 		recipe.getRecipeInfo();
 	}
 
-	
-	/*
-	
 	@Test(priority=2)
-	public void hypothyroidAddOnRec() throws InterruptedException, IOException {
-		HypothyroidismAddOnRec scrappingHypoThyroidAddOnRec = new HypothyroidismAddOnRec(TestBase.getDriver());
-		scrappingHypoThyroidAddOnRec.readExcel();
-		scrappingHypoThyroidAddOnRec.clickRecipesMenu();
-		scrappingHypoThyroidAddOnRec.gettingRecipes();
+	public void recipes_FtoJ_Test() throws InterruptedException, IOException {
+		
+		Recipes_FtoJ recipe = new Recipes_FtoJ(getDriver());
+		
+		recipe.read_EliminationList_Excel();
+		
+		recipe.read_CuisineCategoryData_Excel();
+		
+		recipe.click_AtoZ_recipes();
+		
+		recipe.getRecipeInfo();
+	}
+	
+	@AfterClass
+	public void teardown() {
+
+		getDriver().quit();
 	}
 
-	@Test(priority=3)
-	public void hypothyroidAftrElimnateAllrgies() throws InterruptedException, IOException {
-		HypothyroidismAfterElimnatngAllergies HypothyroidNoAllergis = new HypothyroidismAfterElimnatngAllergies(
-				TestBase.getDriver());
-		HypothyroidNoAllergis.readExcel();
-		HypothyroidNoAllergis.clickRecipesMenu();
-		HypothyroidNoAllergis.gettingRecipes();
-	}
-
-	@Test(priority = 4)
-	public void diabeticRecipesTest() throws InterruptedException, IOException  {
-		DiabeticRecipes diabeticRepObj=new DiabeticRecipes(TestBase.getDriver());
-		diabeticRepObj.readExcel();
-		diabeticRepObj.clickRecipesMenu();
-		diabeticRepObj.getDiabeticRecipes();
-	}
-
-	@Test(priority = 5)
-	public void getDiabetesRecipesToAdd() throws InterruptedException, IOException  {
-		DiabetesRecipesToAdd diabeticRepToAddObj=new DiabetesRecipesToAdd(TestBase.getDriver());
-		diabeticRepToAddObj.readExcel();
-		diabeticRepToAddObj.clickRecipesMenu();
-		diabeticRepToAddObj.getDiabeticRecipes();
-	}
-
-	@Test(priority = 6)
-	public void getDiabetesRecipesAfterAllergyCheck() throws InterruptedException, IOException  {
-		DiabetesAfterElimnatngAllergies diabeticRepAllergyChk=new DiabetesAfterElimnatngAllergies(TestBase.getDriver());
-		diabeticRepAllergyChk.readExcel();
-		diabeticRepAllergyChk.clickRecipesMenu();
-		diabeticRepAllergyChk.getDiabeticRecipes();
-	}
-
-	@Test (priority = 8)
-	public void PCOSAfterEliminationReceipes() throws InterruptedException, IOException {
-		PCOSRecAfterElimination pcosrecafterelimination = new PCOSRecAfterElimination(TestBase.getDriver());
-		pcosrecafterelimination.readExcel();
-		pcosrecafterelimination.clickRecipesMenu();
-		pcosrecafterelimination.gettingPCOSRec();
-
-	}
-
-	@Test (priority = 9)
-	public void PCOSAllergyFiltered() throws InterruptedException, IOException {
-		PcosRecipesAfterEliminatngAllergies pcosrecipesafterelimonatingallergies = new PcosRecipesAfterEliminatngAllergies(TestBase.getDriver());
-
-		pcosrecipesafterelimonatingallergies.clickRecipesMenu();
-		pcosrecipesafterelimonatingallergies.readExcel();
-		pcosrecipesafterelimonatingallergies.gettingRecipes();
-
-	}
-
-	@Test(priority = 10)
-	public void validateUserLandingHomePageTest() throws InterruptedException {
-
-		HighBloodPressure highBloodPressure = new HighBloodPressure();
-		driver.get(prop.getProperty("HBP_url"));
-		LoggerLoad.info("Executing test to validate Home Page title...");
-		String HomePageTitle = driver.getTitle();
-
-		LoggerLoad.info("Title of the home page is: " + HomePageTitle);
-		Assert.assertEquals(HomePageTitle, "High Blood Pressure Recipes, Low Salt Recipes, Veg Low Sodium");
-
-		highBloodPressure.readExcel();
-
-		Assert.assertTrue(highBloodPressure.mouseoverRecipes());
-		highBloodPressure.setHighBloodPressure();
-
-		highBloodPressure.scrapHBPRecipes();
-	}
-
-*/
 
 }
