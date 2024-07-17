@@ -190,3 +190,110 @@ java.io.EOFException: Unexpected end of ZLIB input stream
 [INFO ]2024-07-1618:40:26.691[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
 [INFO ]2024-07-1618:42:59.640[main]utils.LoggerLoad1)-Inside init
 [INFO ]2024-07-1618:42:59.642[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1619:36:04.744[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1619:36:04.746[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1619:37:19.092[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1619:37:19.094[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1621:52:33.803[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1621:52:33.805[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1621:55:07.429[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1621:55:07.431[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:03:06.288[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:03:06.291[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:05:56.547[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:05:56.550[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:16:35.099[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:16:35.102[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[ERROR]2024-07-1622:17:09.405[main]org.apache.poi.openxml4j.opc.internal.marshallers.ZipPartMarshaller1)-Cannot write: /xl/metadata: in ZIP
+java.io.EOFException: Unexpected end of ZLIB input stream
+	at java.base/java.util.zip.InflaterInputStream.fill(InflaterInputStream.java:244) ~[?:?]
+	at org.apache.commons.compress.archivers.zip.InflaterInputStreamWithStatistics.fill(InflaterInputStreamWithStatistics.java:51) ~[commons-compress-1.26.2.jar:1.26.2]
+	at java.base/java.util.zip.InflaterInputStream.read(InflaterInputStream.java:158) ~[?:?]
+	at org.apache.commons.compress.archivers.zip.InflaterInputStreamWithStatistics.read(InflaterInputStreamWithStatistics.java:76) ~[commons-compress-1.26.2.jar:1.26.2]
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:132) ~[?:?]
+	at org.apache.poi.openxml4j.util.ZipArchiveThresholdInputStream.read(ZipArchiveThresholdInputStream.java:78) ~[poi-ooxml-5.2.5.jar:5.2.5]
+	at org.apache.poi.util.IOUtils.copy(IOUtils.java:413) ~[poi-5.2.5.jar:5.2.5]
+	at org.apache.poi.util.IOUtils.copy(IOUtils.java:392) ~[poi-5.2.5.jar:5.2.5]
+	at org.apache.poi.openxml4j.opc.internal.marshallers.ZipPartMarshaller.marshall(ZipPartMarshaller.java:89) ~[poi-ooxml-5.2.5.jar:5.2.5]
+	at org.apache.poi.openxml4j.opc.ZipPackagePart.save(ZipPackagePart.java:127) ~[poi-ooxml-5.2.5.jar:5.2.5]
+	at org.apache.poi.openxml4j.opc.internal.marshallers.DefaultMarshaller.marshall(DefaultMarshaller.java:46) ~[poi-ooxml-5.2.5.jar:5.2.5]
+	at org.apache.poi.openxml4j.opc.ZipPackage.saveImpl(ZipPackage.java:629) ~[poi-ooxml-5.2.5.jar:5.2.5]
+	at org.apache.poi.openxml4j.opc.OPCPackage.save(OPCPackage.java:1532) ~[poi-ooxml-5.2.5.jar:5.2.5]
+	at org.apache.poi.ooxml.POIXMLDocument.write(POIXMLDocument.java:227) ~[poi-ooxml-5.2.5.jar:5.2.5]
+	at utils.ExcelUtility.storeRecipeInfo(ExcelUtility.java:176) ~[test-classes/:?]
+	at org.pageobjects.RecipeAtoE.getRecipeInfo(RecipeAtoE.java:39) ~[test-classes/:?]
+	at tests.HomePageTest.RecipeAtoETest(HomePageTest.java:33) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128) ~[testng-7.8.0.jar:7.8.0]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) [?:?]
+	at org.testng.TestRunner.privateRun(TestRunner.java:848) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestRunner.run(TestRunner.java:621) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.runSuites(TestNG.java:1114) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.run(TestNG.java:1082) [testng-7.8.0.jar:7.8.0]
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115) [testng-remote.jar:?]
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251) [testng-remote.jar:?]
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77) [testng-remote.jar:?]
+[INFO ]2024-07-1622:21:25.563[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:21:25.565[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:24:14.994[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:24:14.996[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:25:56.167[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:25:56.170[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:27:48.248[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:27:48.250[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:30:47.871[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:30:47.874[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:31:29.456[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:31:29.459[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:34:25.966[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:34:25.969[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:35:20.207[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:35:20.209[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:35:58.451[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:35:58.453[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:37:40.531[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:37:40.533[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:38:25.647[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:38:25.649[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:40:10.211[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:40:10.214[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:40:32.107[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:40:32.109[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:55:25.424[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:55:25.426[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1622:56:22.388[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1622:56:22.390[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:08:17.433[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:08:17.435[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:08:55.953[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:08:55.955[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:11:09.407[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:11:09.409[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:13:38.853[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:13:38.855[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:18:26.660[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:18:26.662[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:20:18.625[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:20:18.628[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:23:56.782[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:23:56.784[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
+[INFO ]2024-07-1623:28:17.755[main]utils.LoggerLoad1)-Inside init
+[INFO ]2024-07-1623:28:17.757[main]utils.LoggerLoad1)-The url is: https://www.tarladalal.com/
