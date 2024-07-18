@@ -8,14 +8,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import base.TestBase;
-import recipe_scrapping.Recipes_AtoE;
-import recipe_scrapping.Recipes_FtoJ;
-import recipe_scrapping.Recipes_KtoO;
-import recipe_scrapping.Recipes_UtoZ;
+import org.pageobjects.RecipeFtoJ;
+import org.pageobjects.RecipeUtoZ;
+import org.pageobjects.LFV_AtoE_Recipes;
+import org.pageobjects.LCHF_AtoE_Recipes;
+import org.pageobjects.LFV_Allergy_Milk;
+import org.pageobjects.RecipeKtoO;
 
 public class HomePageTest extends TestBase {
-
-	//HomePage homePage;
 
 	public HomePageTest() {
 		super();
@@ -30,25 +30,50 @@ public class HomePageTest extends TestBase {
 
 
 	@Test(priority=1)
-	public void recipes_AtoE_Test() throws InterruptedException, IOException {
+	public void LFV_AtoERecipesTest() throws Exception{
 		
-		Recipes_AtoE recipe = new Recipes_AtoE(TestBase.getDriver());
+		LFV_AtoE_Recipes recObj = new LFV_AtoE_Recipes(getDriver());
 		
-		recipe.read_EliminationList_Excel();
+		recObj.read_LFV_Elimination_Excel();
 		
-		recipe.read_CuisineCategoryData_Excel();
+		recObj.read_CuisineCategoryData_Excel();
 		
-		recipe.click_AtoZ_recipes();
+		recObj.click_AtoZ_recipes();
 		
-		recipe.getRecipeInfo();
+		recObj.getRecipeInfo();
+	}
+	
+	@Test(priority=2)
+	public void LCHF_AtoERecipesTest() throws Exception {
+		
+		LCHF_AtoE_Recipes recObj = new LCHF_AtoE_Recipes(getDriver());
+		
+		recObj.read_CuisineCategoryData_Excel();
+		
+		recObj.click_AtoZ_recipes();
+		
+		recObj.getRecipeInfo();
+	}
+	
+	
+	@Test(priority = 3)
+	public void LFV_Allergy_Milk_Test() throws Exception{
+		
+		LFV_Allergy_Milk recObj = new LFV_Allergy_Milk(getDriver());
+		
+		recObj.read_CuisineCategoryData_Excel();
+		
+		recObj.click_AtoZ_recipes();
+		
+		recObj.getRecipeInfo();
 	}
 
-	@Test(priority=2)
+	@Test(priority=4)
 	public void recipes_FtoJ_Test() throws InterruptedException, IOException {
 		
-		Recipes_FtoJ recipe = new Recipes_FtoJ(getDriver());
+		RecipeFtoJ recipe = new RecipeFtoJ(getDriver());
 		
-		recipe.read_EliminationList_Excel();
+		recipe.read_Excel();
 		
 		recipe.read_CuisineCategoryData_Excel();
 		
@@ -57,21 +82,18 @@ public class HomePageTest extends TestBase {
 		recipe.getRecipeInfo();
 	}
 	
-	@Test(priority=3)
+	@Test(priority=5)
 	public void recipes_KtoO_Test() throws InterruptedException, IOException {
 		
-		Recipes_KtoO recipe = new Recipes_KtoO(getDriver());
-		
-		recipe.read_EliminationList_Excel();
-		
-		recipe.read_CuisineCategoryData_Excel();
+		RecipeKtoO recipe = new RecipeKtoO(getDriver());
 		
 		recipe.click_AtoZ_recipes();
-		
+		 
 		recipe.getRecipeInfo();
+		
 	}
 	
-	@Test(priority=4)
+	@Test(priority=6)
 	public void recipes_PtoT_Test() throws InterruptedException, IOException {
 		
 		Recipes_PtoT recipe = new Recipes_PtoT(getDriver());
@@ -83,20 +105,19 @@ public class HomePageTest extends TestBase {
 		recipe.click_AtoZ_recipes();
 		
 		recipe.getRecipeInfo();
+		
+		
 	}
 	
-	@Test(priority=5)
-	public void recipes_UtoZ_Test() throws InterruptedException, IOException {
+	@Test(priority=7)
+	public void recipes_UtoZ_Test() throws Exception {
 		
-		Recipes_UtoZ recipe = new Recipes_UtoZ(getDriver());
-		
-		recipe.read_EliminationList_Excel();
-		
-		recipe.read_CuisineCategoryData_Excel();
+		RecipeUtoZ recipe = new RecipeUtoZ(getDriver());
 		
 		recipe.click_AtoZ_recipes();
 		
-		recipe.getRecipeInfo();
+		recipe.jgetRecipeInfo();
+		
 	}
 	
 	@AfterClass
