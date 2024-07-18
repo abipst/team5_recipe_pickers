@@ -54,7 +54,7 @@ public class RecipeFtoJ extends TestBase{
 	  
 	  }
 	
-	public void read_EliminationList_Excel() {
+	public void read_Excel() {
 		
 		ExcelReaderCode reader = new ExcelReaderCode("./src/test/resources/CriteriaFiles/IngredientsAndComorbidities-ScrapperHackathon.xlsx");
 		
@@ -68,7 +68,6 @@ public class RecipeFtoJ extends TestBase{
 			
 			LFV_EliminateItemList.add(testData.toLowerCase());
 			
-			//System.out.println(testData);
 			}
 			
 			for (int i = 3; i <= 90; i++) {
@@ -76,8 +75,6 @@ public class RecipeFtoJ extends TestBase{
 				String testData = reader.getCellData("Final list for LFV Elimination ", 1, i);
 				
 				LFV_AddItemList.add(testData.toLowerCase());
-				
-				//System.out.println(testData);
 			}
 			
 		Boolean lchfSheetCheck = reader.isSheetExist("Final list for LCHFElimination ");
@@ -90,8 +87,6 @@ public class RecipeFtoJ extends TestBase{
 				
 				LCHF_EliminateItemList.add(testData.toLowerCase());
 				
-				//System.out.println(testData);
-				
 			}
 		
 			for (int i = 3; i <= 34; i++) {
@@ -100,7 +95,6 @@ public class RecipeFtoJ extends TestBase{
 				
 				LCHF_AddItemList.add(data.toLowerCase());
 				
-				//System.out.println(data);
 			}
 	}
 	
@@ -377,8 +371,6 @@ public class RecipeFtoJ extends TestBase{
 								}
 								
 							String cuisineCategory = "";
-							
-							//ArrayList<String> cuisineList = new ArrayList<String>(Arrays.asList("Gujarati", "Punjabi", "Rajasthani", "Maharashtrian", "South Indian", "Chinese", "Italian"));
 							
 							for(String cuisine : cuisineDataList) {		
 								
