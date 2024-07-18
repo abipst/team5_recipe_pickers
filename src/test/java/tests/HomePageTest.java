@@ -2,14 +2,15 @@ package tests;
 
 import java.io.IOException;
 
+import org.pageobjects.Recipes_PtoT;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import base.TestBase;
 import recipe_scrapping.Recipes_AtoE;
 import recipe_scrapping.Recipes_FtoJ;
 import recipe_scrapping.Recipes_KtoO;
-import recipe_scrapping.Recipes_PtoT;
 import recipe_scrapping.Recipes_UtoZ;
 
 public class HomePageTest extends TestBase {
