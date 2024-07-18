@@ -2,15 +2,17 @@ package tests;
 
 import java.io.IOException;
 
-//import org.pageobjects.RecipeAtoE;
-import org.pageobjects.RecipeFtoJ;
-import org.pageobjects.RecipeUtoZ;
-//import org.pageobjects.RecipeKtoO;
-//import org.pageobjects.RecipePtoT;
+import org.pageobjects.Recipes_PtoT;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import base.TestBase;
+import org.pageobjects.RecipeFtoJ;
+import org.pageobjects.RecipeUtoZ;
+import org.pageobjects.LFV_AtoE_Recipes;
+import org.pageobjects.LCHF_AtoE_Recipes;
+import org.pageobjects.LFV_Allergy_Milk;
 
 public class HomePageTest extends TestBase {
 
@@ -83,6 +85,7 @@ public class HomePageTest extends TestBase {
 	
 	@Test(priority=5)
 	public void recipes_KtoO_Test() throws InterruptedException, IOException {
+		
 		
 		
 	}
