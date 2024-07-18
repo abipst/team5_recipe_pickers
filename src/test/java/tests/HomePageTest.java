@@ -1,18 +1,20 @@
 package tests;
 
 import java.io.IOException;
-import org.pageobjects.RecipeAtoE;
-import org.pageobjects.Recipes_FtoJ;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import base.TestBase;
-import pages.*;
-import utils.LoggerLoad;
+import recipe_scrapping.Recipes_AtoE;
+import recipe_scrapping.Recipes_FtoJ;
+import recipe_scrapping.Recipes_KtoO;
+import recipe_scrapping.Recipes_PtoT;
+import recipe_scrapping.Recipes_UtoZ;
 
 public class HomePageTest extends TestBase {
 
-	HomePage homePage;
+	//HomePage homePage;
 
 	public HomePageTest() {
 		super();
@@ -23,14 +25,20 @@ public class HomePageTest extends TestBase {
 	public void setup() {
 
 		TestBase.initialization();
-		homePage = new HomePage();
 	}
 
 
 	@Test(priority=1)
-	public void RecipeAtoETest() throws InterruptedException, IOException {
-		RecipeAtoE recipe = new RecipeAtoE(TestBase.getDriver());
+	public void recipes_AtoE_Test() throws InterruptedException, IOException {
+		
+		Recipes_AtoE recipe = new Recipes_AtoE(TestBase.getDriver());
+		
+		recipe.read_EliminationList_Excel();
+		
+		recipe.read_CuisineCategoryData_Excel();
+		
 		recipe.click_AtoZ_recipes();
+		
 		recipe.getRecipeInfo();
 	}
 
@@ -38,6 +46,48 @@ public class HomePageTest extends TestBase {
 	public void recipes_FtoJ_Test() throws InterruptedException, IOException {
 		
 		Recipes_FtoJ recipe = new Recipes_FtoJ(getDriver());
+		
+		recipe.read_EliminationList_Excel();
+		
+		recipe.read_CuisineCategoryData_Excel();
+		
+		recipe.click_AtoZ_recipes();
+		
+		recipe.getRecipeInfo();
+	}
+	
+	@Test(priority=3)
+	public void recipes_KtoO_Test() throws InterruptedException, IOException {
+		
+		Recipes_KtoO recipe = new Recipes_KtoO(getDriver());
+		
+		recipe.read_EliminationList_Excel();
+		
+		recipe.read_CuisineCategoryData_Excel();
+		
+		recipe.click_AtoZ_recipes();
+		
+		recipe.getRecipeInfo();
+	}
+	
+	@Test(priority=4)
+	public void recipes_PtoT_Test() throws InterruptedException, IOException {
+		
+		Recipes_PtoT recipe = new Recipes_PtoT(getDriver());
+		
+		recipe.read_EliminationList_Excel();
+		
+		recipe.read_CuisineCategoryData_Excel();
+		
+		recipe.click_AtoZ_recipes();
+		
+		recipe.getRecipeInfo();
+	}
+	
+	@Test(priority=5)
+	public void recipes_UtoZ_Test() throws InterruptedException, IOException {
+		
+		Recipes_UtoZ recipe = new Recipes_UtoZ(getDriver());
 		
 		recipe.read_EliminationList_Excel();
 		
