@@ -83,7 +83,7 @@ public class HomePageTest extends TestBase {
 	}
 	
 	@Test(priority=5)
-	public void recipes_KtoO_Test() throws InterruptedException, IOException {
+	public void recipes_KtoO_Test() throws Exception {
 		
 		RecipeKtoO recipe = new RecipeKtoO(getDriver());
 		
