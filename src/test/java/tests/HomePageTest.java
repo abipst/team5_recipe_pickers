@@ -16,7 +16,6 @@ import org.pageobjects.LFV_Allergy_Milk;
 
 public class HomePageTest extends TestBase {
 
-	//HomePage homePage;
 
 	public HomePageTest() {
 		super();
