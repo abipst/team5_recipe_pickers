@@ -5,8 +5,8 @@
     <classes>
       <class name="tests.HomePageTest">
         <methods>
-          <include name="RecipeAtoETest"/>
           <include name="setup"/>
+          <include name="recipes_PtoT_Test"/>
         </methods>
       </class> <!-- tests.HomePageTest -->
     </classes>
