@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-07-18T03:00:34 EDT" name="Default suite" finished-at="2024-07-18T03:01:30 EDT" duration-ms="55754">
+  <suite started-at="2024-07-18T12:17:37 EDT" name="Default suite" finished-at="2024-07-18T12:21:09 EDT" duration-ms="211960">
     <groups>
     </groups>
-    <test started-at="2024-07-18T03:00:34 EDT" name="Default test" finished-at="2024-07-18T03:01:30 EDT" duration-ms="55754">
+    <test started-at="2024-07-18T12:17:37 EDT" name="Default test" finished-at="2024-07-18T12:21:09 EDT" duration-ms="211960">
       <class name="tests.HomePageTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HomePageTest@795509d9]" started-at="2024-07-18T03:00:34 EDT" name="setup" finished-at="2024-07-18T03:00:37 EDT" duration-ms="3438" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HomePageTest@795509d9]" started-at="2024-07-18T12:17:37 EDT" name="setup" finished-at="2024-07-18T12:17:41 EDT" duration-ms="4147" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="recipes_PtoT_Test()[pri:1, instance:tests.HomePageTest@795509d9]" started-at="2024-07-18T03:00:37 EDT" name="recipes_PtoT_Test" finished-at="2024-07-18T03:01:30 EDT" duration-ms="52288" status="PASS">
+        <test-method signature="recipes_PtoT_Test()[pri:1, instance:tests.HomePageTest@795509d9]" started-at="2024-07-18T12:17:41 EDT" name="recipes_PtoT_Test" finished-at="2024-07-18T12:21:09 EDT" duration-ms="207779" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- recipes_PtoT_Test -->

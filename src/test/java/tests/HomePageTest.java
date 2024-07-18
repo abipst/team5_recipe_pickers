@@ -25,18 +25,17 @@ public class HomePageTest extends TestBase {
 		homePage = new HomePage();
 	}
 
-
-	@Test(priority=1)
+	@Test(priority = 1)
 	public void recipes_PtoT_Test() throws InterruptedException, IOException {
-		
+
 		Recipes_PtoT recipe = new Recipes_PtoT(getDriver());
-		
+
 		recipe.read_EliminationList_Excel();
-		
+
 		recipe.read_CuisineCategoryData_Excel();
-		
+
 		recipe.click_AtoZ_recipes();
-		
+
 		recipe.getRecipeInfo();
 	}
 
