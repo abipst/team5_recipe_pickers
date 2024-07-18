@@ -13,6 +13,7 @@ import org.pageobjects.RecipeUtoZ;
 import org.pageobjects.LFV_AtoE_Recipes;
 import org.pageobjects.LCHF_AtoE_Recipes;
 import org.pageobjects.LFV_Allergy_Milk;
+import org.pageobjects.RecipeKtoO;
 
 public class HomePageTest extends TestBase {
 
@@ -31,7 +32,7 @@ public class HomePageTest extends TestBase {
 	@Test(priority=1)
 	public void LFV_AtoERecipesTest() throws Exception{
 		
-		LFV_AtoE_Recipes recObj = new LFV_AtoE_Recipes(TestBase.getDriver());
+		LFV_AtoE_Recipes recObj = new LFV_AtoE_Recipes(getDriver());
 		
 		recObj.read_LFV_Elimination_Excel();
 		
@@ -45,7 +46,7 @@ public class HomePageTest extends TestBase {
 	@Test(priority=2)
 	public void LCHF_AtoERecipesTest() throws Exception {
 		
-		LCHF_AtoE_Recipes recObj = new LCHF_AtoE_Recipes(TestBase.getDriver());
+		LCHF_AtoE_Recipes recObj = new LCHF_AtoE_Recipes(getDriver());
 		
 		recObj.read_CuisineCategoryData_Excel();
 		
@@ -58,7 +59,7 @@ public class HomePageTest extends TestBase {
 	@Test(priority = 3)
 	public void LFV_Allergy_Milk_Test() throws Exception{
 		
-		LFV_Allergy_Milk recObj = new LFV_Allergy_Milk(TestBase.getDriver());
+		LFV_Allergy_Milk recObj = new LFV_Allergy_Milk(getDriver());
 		
 		recObj.read_CuisineCategoryData_Excel();
 		
@@ -84,7 +85,11 @@ public class HomePageTest extends TestBase {
 	@Test(priority=5)
 	public void recipes_KtoO_Test() throws InterruptedException, IOException {
 		
+		RecipeKtoO recipe = new RecipeKtoO(getDriver());
 		
+		recipe.click_AtoZ_recipes();
+		 
+		recipe.getRecipeInfo();
 		
 	}
 	
