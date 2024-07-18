@@ -27,7 +27,7 @@ import org.openqa.selenium.support.PageFactory;
 import base.TestBase;
 import utils.ExcelReaderCode;
 
-public class LFV_AtoE_Recipes extends TestBase {
+public class LCHF_AtoE_Recipes extends TestBase {
 	int pageCount;
 	List<String> LFV_EliminateItemList = new ArrayList<String>();
 	List<String> LFV_AddItemList=new ArrayList<String>();
@@ -36,27 +36,27 @@ public class LFV_AtoE_Recipes extends TestBase {
 	String food_Category;
 	String rec_Category;
 		
-	public LFV_AtoE_Recipes(WebDriver driver) {
+	public LCHF_AtoE_Recipes(WebDriver driver) {
 		PageFactory.initElements(driver,this);
 	}
 	
-	public void read_LFV_Elimination_Excel() {
+	public void read_LCHF_Elimination_Excel() {
 		ExcelReaderCode reader = new ExcelReaderCode("./src/test/resources/Ingredients  -ScrapperHackathon.xlsx");
 		Boolean sheetCheck = reader.isSheetExist("Final list for LFV Elimination ");
 		System.out.println("Is the Datasheet exist? -  " + sheetCheck);
-			for (int i = 3; i <= 76; i++) {
-			String testData = reader.getCellData("Final list for LFV Elimination ", 0, i);
+			for (int i = 3; i <= 92; i++) {
+			String testData = reader.getCellData("Final list for LCHFElimination ", 0, i);
 			LFV_EliminateItemList.add(testData.toLowerCase());
 			//System.out.println(testData);
 		}
 	}
 	
-	public void read_LFV_Add_Excel() {
+	public void read_LCHF_Add_Excel() {
 		ExcelReaderCode reader = new ExcelReaderCode("./src/test/resources/Ingredients  -ScrapperHackathon.xlsx");
 		Boolean sheetCheck = reader.isSheetExist("Final list for LFV Elimination ");
 		System.out.println("Is the Datasheet exist? -  " + sheetCheck);
-			for (int i = 3; i <= 90; i++) {
-			String testData = reader.getCellData("Final list for LFV Elimination ", 1, i);
+			for (int i = 3; i <= 34; i++) {
+			String testData = reader.getCellData("Final list for LCHFElimination ", 1, i);
 			LFV_AddItemList.add(testData.toLowerCase());
 			//System.out.println(testData);
 		}
@@ -83,76 +83,76 @@ public class LFV_AtoE_Recipes extends TestBase {
 	public void getRecipeInfo() throws Exception {
 		int AddColumn=1;
 		int column=1;
-		File src = new File("./src/test/resources/Scrapped_Recipes/ScrappedLFV_Recipes_AtoE.xls");
+		File src = new File("./src/test/resources/Scrapped_Recipes/ScrappedLCHF_Recipes_AtoE.xls");
 		XSSFWorkbook workbook = new XSSFWorkbook();
-		XSSFSheet LFVsheet = workbook.createSheet("LFV_Elimination_recipes");
+		XSSFSheet LCHFsheet = workbook.createSheet("LCHF_Elimination_recipes");
 		FileOutputStream fos = new FileOutputStream(src);
-		LFVsheet.createRow(0);
-		LFVsheet.getRow(0).createCell(0).setCellValue("Recipe ID");
-		LFVsheet.createRow(1);
-        LFVsheet.getRow(1).createCell(0).setCellValue("Recipe Name");
-        LFVsheet.createRow(2);
-        LFVsheet.getRow(2).createCell(0).setCellValue("Recipe Category(Breakfast/lunch/snack/dinner)");
-        LFVsheet.createRow(3);
-        LFVsheet.getRow(3).createCell(0).setCellValue("Food Category");
-        LFVsheet.createRow(4);
-        LFVsheet.getRow(4).createCell(0).setCellValue("Ingredients");
-        LFVsheet.createRow(5);
-        LFVsheet.getRow(5).createCell(0).setCellValue("Preparation Time");
-        LFVsheet.createRow(6);
-        LFVsheet.getRow(6).createCell(0).setCellValue("Cooking Time");
-        LFVsheet.createRow(7);
-        LFVsheet.getRow(7).createCell(0).setCellValue("Tag");
-        LFVsheet.createRow(8);
-        LFVsheet.getRow(8).createCell(0).setCellValue("No of servings");
-        LFVsheet.createRow(9);
-        LFVsheet.getRow(9).createCell(0).setCellValue("Cuisine category");
-        LFVsheet.createRow(10);
-        LFVsheet.getRow(10).createCell(0).setCellValue("Recipe Description");
-        LFVsheet.createRow(11);
-        LFVsheet.getRow(11).createCell(0).setCellValue("Preparation method");
-        LFVsheet.createRow(12);
-        LFVsheet.getRow(12).createCell(0).setCellValue("Nutrient values");
-        LFVsheet.createRow(13);
-        LFVsheet.getRow(13).createCell(0).setCellValue("Recipe URL");
+		LCHFsheet.createRow(0);
+		LCHFsheet.getRow(0).createCell(0).setCellValue("Recipe ID");
+		LCHFsheet.createRow(1);
+        LCHFsheet.getRow(1).createCell(0).setCellValue("Recipe Name");
+        LCHFsheet.createRow(2);
+        LCHFsheet.getRow(2).createCell(0).setCellValue("Recipe Category(Breakfast/lunch/snack/dinner)");
+        LCHFsheet.createRow(3);
+        LCHFsheet.getRow(3).createCell(0).setCellValue("Food Category");
+        LCHFsheet.createRow(4);
+        LCHFsheet.getRow(4).createCell(0).setCellValue("Ingredients");
+        LCHFsheet.createRow(5);
+        LCHFsheet.getRow(5).createCell(0).setCellValue("Preparation Time");
+        LCHFsheet.createRow(6);
+        LCHFsheet.getRow(6).createCell(0).setCellValue("Cooking Time");
+        LCHFsheet.createRow(7);
+        LCHFsheet.getRow(7).createCell(0).setCellValue("Tag");
+        LCHFsheet.createRow(8);
+        LCHFsheet.getRow(8).createCell(0).setCellValue("No of servings");
+        LCHFsheet.createRow(9);
+        LCHFsheet.getRow(9).createCell(0).setCellValue("Cuisine category");
+        LCHFsheet.createRow(10);
+        LCHFsheet.getRow(10).createCell(0).setCellValue("Recipe Description");
+        LCHFsheet.createRow(11);
+        LCHFsheet.getRow(11).createCell(0).setCellValue("Preparation method");
+        LCHFsheet.createRow(12);
+        LCHFsheet.getRow(12).createCell(0).setCellValue("Nutrient values");
+        LCHFsheet.createRow(13);
+        LCHFsheet.getRow(13).createCell(0).setCellValue("Recipe URL");
         
         //Creating a new sheet to write Add item list
-        XSSFSheet LFVAddsheet = workbook.createSheet("LFV_To_Add_recipes");
-        LFVAddsheet.createRow(0);
-        LFVAddsheet.getRow(0).createCell(0).setCellValue("Recipe ID");
-        LFVAddsheet.createRow(1);
-        LFVAddsheet.getRow(1).createCell(0).setCellValue("Recipe Name");
-        LFVAddsheet.createRow(2);
-        LFVAddsheet.getRow(2).createCell(0).setCellValue("Recipe Category(Breakfast/lunch/snack/dinner)");
-        LFVAddsheet.createRow(3);
-        LFVAddsheet.getRow(3).createCell(0).setCellValue("Food Category");
-        LFVAddsheet.createRow(4);
-        LFVAddsheet.getRow(4).createCell(0).setCellValue("Ingredients");
-        LFVAddsheet.createRow(5);
-        LFVAddsheet.getRow(5).createCell(0).setCellValue("Preparation Time");
-        LFVAddsheet.createRow(6);
-        LFVAddsheet.getRow(6).createCell(0).setCellValue("Cooking Time");
-        LFVAddsheet.createRow(7);
-        LFVAddsheet.getRow(7).createCell(0).setCellValue("Tag");
-        LFVAddsheet.createRow(8);
-        LFVAddsheet.getRow(8).createCell(0).setCellValue("No of servings");
-        LFVAddsheet.createRow(9);
-        LFVAddsheet.getRow(9).createCell(0).setCellValue("Cuisine category");
-        LFVAddsheet.createRow(10);
-        LFVAddsheet.getRow(10).createCell(0).setCellValue("Recipe Description");
-        LFVAddsheet.createRow(11);
-        LFVAddsheet.getRow(11).createCell(0).setCellValue("Preparation method");
-        LFVAddsheet.createRow(12);
-        LFVAddsheet.getRow(12).createCell(0).setCellValue("Nutrient values");
-        LFVAddsheet.createRow(13);
-        LFVAddsheet.getRow(13).createCell(0).setCellValue("Recipe URL");
+        XSSFSheet LCHFAddsheet = workbook.createSheet("LCHF_To_Add_recipes");
+        LCHFAddsheet.createRow(0);
+        LCHFAddsheet.getRow(0).createCell(0).setCellValue("Recipe ID");
+        LCHFAddsheet.createRow(1);
+        LCHFAddsheet.getRow(1).createCell(0).setCellValue("Recipe Name");
+        LCHFAddsheet.createRow(2);
+        LCHFAddsheet.getRow(2).createCell(0).setCellValue("Recipe Category(Breakfast/lunch/snack/dinner)");
+        LCHFAddsheet.createRow(3);
+        LCHFAddsheet.getRow(3).createCell(0).setCellValue("Food Category");
+        LCHFAddsheet.createRow(4);
+        LCHFAddsheet.getRow(4).createCell(0).setCellValue("Ingredients");
+        LCHFAddsheet.createRow(5);
+        LCHFAddsheet.getRow(5).createCell(0).setCellValue("Preparation Time");
+        LCHFAddsheet.createRow(6);
+        LCHFAddsheet.getRow(6).createCell(0).setCellValue("Cooking Time");
+        LCHFAddsheet.createRow(7);
+        LCHFAddsheet.getRow(7).createCell(0).setCellValue("Tag");
+        LCHFAddsheet.createRow(8);
+        LCHFAddsheet.getRow(8).createCell(0).setCellValue("No of servings");
+        LCHFAddsheet.createRow(9);
+        LCHFAddsheet.getRow(9).createCell(0).setCellValue("Cuisine category");
+        LCHFAddsheet.createRow(10);
+        LCHFAddsheet.getRow(10).createCell(0).setCellValue("Recipe Description");
+        LCHFAddsheet.createRow(11);
+        LCHFAddsheet.getRow(11).createCell(0).setCellValue("Preparation method");
+        LCHFAddsheet.createRow(12);
+        LCHFAddsheet.getRow(12).createCell(0).setCellValue("Nutrient values");
+        LCHFAddsheet.createRow(13);
+        LCHFAddsheet.getRow(13).createCell(0).setCellValue("Recipe URL");
         
         
       //Read Elimination data from excel and store it into arraylist
-      		this.read_LFV_Elimination_Excel();
+      		this.read_LCHF_Elimination_Excel();
       		
       		//Read Add data from excel and store it into arraylist
-      		this.read_LFV_Add_Excel();
+      		this.read_LCHF_Add_Excel();
 		 //Getting all the alphabets list
 		List<WebElement> menuAtoZWebElements=driver.findElements(By.xpath("//table[@class='mnualpha ctl00_cntleftpanel_mnuAlphabets_5 ctl00_cntleftpanel_mnuAlphabets_2']/tbody/tr/td[@onmouseover='Menu_HoverStatic(this)']//a[1]"));
 		
@@ -331,21 +331,21 @@ public class LFV_AtoE_Recipes extends TestBase {
 							//If recipe is valid then fetch all the recipe details
 								 if(validRecipe)
 									{
-										System.out.println("------ Valid Recipes of LFV after elimination --------");									
-										 LFVsheet.getRow(0).createCell(column).setCellValue(recipe_id);
-						                 LFVsheet.getRow(1).createCell(column).setCellValue(recipe_name);
-						                 LFVsheet.getRow(2).createCell(column).setCellValue(rec_Category);
-						                 LFVsheet.getRow(3).createCell(column).setCellValue(food_Category);
-						                 LFVsheet.getRow(4).createCell(column).setCellValue(ingredientsValue);
-						                 LFVsheet.getRow(5).createCell(column).setCellValue(prepTime);
-						                 LFVsheet.getRow(6).createCell(column).setCellValue(cookTime);
-						                 LFVsheet.getRow(7).createCell(column).setCellValue(tags);
-						                 LFVsheet.getRow(8).createCell(column).setCellValue(noOfServings);
-						                 LFVsheet.getRow(9).createCell(column).setCellValue(cuisineCategory);
-						                 LFVsheet.getRow(10).createCell(column).setCellValue(desc);
-						                 LFVsheet.getRow(11).createCell(column).setCellValue(method);
-						                 LFVsheet.getRow(12).createCell(column).setCellValue(nutritionValue);
-						                 LFVsheet.getRow(13).createCell(column).setCellValue(stringurl);
+										System.out.println("------ Valid Recipes of LCHF after elimination --------");									
+										 LCHFsheet.getRow(0).createCell(column).setCellValue(recipe_id);
+						                 LCHFsheet.getRow(1).createCell(column).setCellValue(recipe_name);
+						                 LCHFsheet.getRow(2).createCell(column).setCellValue(rec_Category);
+						                 LCHFsheet.getRow(3).createCell(column).setCellValue(food_Category);
+						                 LCHFsheet.getRow(4).createCell(column).setCellValue(ingredientsValue);
+						                 LCHFsheet.getRow(5).createCell(column).setCellValue(prepTime);
+						                 LCHFsheet.getRow(6).createCell(column).setCellValue(cookTime);
+						                 LCHFsheet.getRow(7).createCell(column).setCellValue(tags);
+						                 LCHFsheet.getRow(8).createCell(column).setCellValue(noOfServings);
+						                 LCHFsheet.getRow(9).createCell(column).setCellValue(cuisineCategory);
+						                 LCHFsheet.getRow(10).createCell(column).setCellValue(desc);
+						                 LCHFsheet.getRow(11).createCell(column).setCellValue(method);
+						                 LCHFsheet.getRow(12).createCell(column).setCellValue(nutritionValue);
+						                 LCHFsheet.getRow(13).createCell(column).setCellValue(stringurl);
 						                 column++;
 									}
 								 
@@ -371,22 +371,23 @@ public class LFV_AtoE_Recipes extends TestBase {
 									}//end of add item if statement
 								 
 								 if(addValidRecipe) {
-									 System.out.println("------ Valid Recipes of LFV Add Item list --------");									
-									 LFVAddsheet.getRow(0).createCell(AddColumn).setCellValue(recipe_id);
-					                 LFVAddsheet.getRow(1).createCell(AddColumn).setCellValue(recipe_name);
-					                 LFVAddsheet.getRow(2).createCell(AddColumn).setCellValue(rec_Category);
-					                 LFVAddsheet.getRow(3).createCell(AddColumn).setCellValue(food_Category);
-					                 LFVAddsheet.getRow(4).createCell(AddColumn).setCellValue(ingredientsValue);
-					                 LFVAddsheet.getRow(5).createCell(AddColumn).setCellValue(prepTime);
-					                 LFVAddsheet.getRow(6).createCell(AddColumn).setCellValue(cookTime);
-					                 LFVAddsheet.getRow(7).createCell(AddColumn).setCellValue(tags);
-					                 LFVAddsheet.getRow(8).createCell(AddColumn).setCellValue(noOfServings);
-					                 LFVAddsheet.getRow(9).createCell(AddColumn).setCellValue(cuisineCategory);
-					                 LFVAddsheet.getRow(10).createCell(AddColumn).setCellValue(desc);
-					                 LFVAddsheet.getRow(11).createCell(AddColumn).setCellValue(method);
-					                 LFVAddsheet.getRow(12).createCell(AddColumn).setCellValue(nutritionValue);
-					                 LFVAddsheet.getRow(13).createCell(AddColumn).setCellValue(stringurl);
+									 System.out.println("------ Valid Recipes of LCHF Add Item list --------");									
+									 LCHFAddsheet.getRow(0).createCell(AddColumn).setCellValue(recipe_id);
+					                 LCHFAddsheet.getRow(1).createCell(AddColumn).setCellValue(recipe_name);
+					                 LCHFAddsheet.getRow(2).createCell(AddColumn).setCellValue(rec_Category);
+					                 LCHFAddsheet.getRow(3).createCell(AddColumn).setCellValue(food_Category);
+					                 LCHFAddsheet.getRow(4).createCell(AddColumn).setCellValue(ingredientsValue);
+					                 LCHFAddsheet.getRow(5).createCell(AddColumn).setCellValue(prepTime);
+					                 LCHFAddsheet.getRow(6).createCell(AddColumn).setCellValue(cookTime);
+					                 LCHFAddsheet.getRow(7).createCell(AddColumn).setCellValue(tags);
+					                 LCHFAddsheet.getRow(8).createCell(AddColumn).setCellValue(noOfServings);
+					                 LCHFAddsheet.getRow(9).createCell(AddColumn).setCellValue(cuisineCategory);
+					                 LCHFAddsheet.getRow(10).createCell(AddColumn).setCellValue(desc);
+					                 LCHFAddsheet.getRow(11).createCell(AddColumn).setCellValue(method);
+					                 LCHFAddsheet.getRow(12).createCell(AddColumn).setCellValue(nutritionValue);
+					                 LCHFAddsheet.getRow(13).createCell(AddColumn).setCellValue(stringurl);
 					                 AddColumn++;
+					                 
 								 }
 									 
 									 
@@ -404,3 +405,4 @@ public class LFV_AtoE_Recipes extends TestBase {
 	}//end of getRecipeInfo method
 	
 }//end of class
+

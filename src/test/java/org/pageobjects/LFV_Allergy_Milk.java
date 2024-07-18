@@ -27,7 +27,7 @@ import org.openqa.selenium.support.PageFactory;
 import base.TestBase;
 import utils.ExcelReaderCode;
 
-public class LFV_AtoE_Recipes extends TestBase {
+public class LFV_Allergy_Milk extends TestBase {
 	int pageCount;
 	List<String> LFV_EliminateItemList = new ArrayList<String>();
 	List<String> LFV_AddItemList=new ArrayList<String>();
@@ -36,7 +36,7 @@ public class LFV_AtoE_Recipes extends TestBase {
 	String food_Category;
 	String rec_Category;
 		
-	public LFV_AtoE_Recipes(WebDriver driver) {
+	public LFV_Allergy_Milk(WebDriver driver) {
 		PageFactory.initElements(driver,this);
 	}
 	
@@ -51,16 +51,6 @@ public class LFV_AtoE_Recipes extends TestBase {
 		}
 	}
 	
-	public void read_LFV_Add_Excel() {
-		ExcelReaderCode reader = new ExcelReaderCode("./src/test/resources/Ingredients  -ScrapperHackathon.xlsx");
-		Boolean sheetCheck = reader.isSheetExist("Final list for LFV Elimination ");
-		System.out.println("Is the Datasheet exist? -  " + sheetCheck);
-			for (int i = 3; i <= 90; i++) {
-			String testData = reader.getCellData("Final list for LFV Elimination ", 1, i);
-			LFV_AddItemList.add(testData.toLowerCase());
-			//System.out.println(testData);
-		}
-	}
 	
 	public void read_CuisineCategoryData_Excel() {
 		
@@ -83,7 +73,7 @@ public class LFV_AtoE_Recipes extends TestBase {
 	public void getRecipeInfo() throws Exception {
 		int AddColumn=1;
 		int column=1;
-		File src = new File("./src/test/resources/Scrapped_Recipes/ScrappedLFV_Recipes_AtoE.xls");
+		File src = new File("./src/test/resources/Scrapped_Recipes/LFV_Allergy_Milk_AtoE.xls");
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet LFVsheet = workbook.createSheet("LFV_Elimination_recipes");
 		FileOutputStream fos = new FileOutputStream(src);
@@ -116,43 +106,12 @@ public class LFV_AtoE_Recipes extends TestBase {
         LFVsheet.createRow(13);
         LFVsheet.getRow(13).createCell(0).setCellValue("Recipe URL");
         
-        //Creating a new sheet to write Add item list
-        XSSFSheet LFVAddsheet = workbook.createSheet("LFV_To_Add_recipes");
-        LFVAddsheet.createRow(0);
-        LFVAddsheet.getRow(0).createCell(0).setCellValue("Recipe ID");
-        LFVAddsheet.createRow(1);
-        LFVAddsheet.getRow(1).createCell(0).setCellValue("Recipe Name");
-        LFVAddsheet.createRow(2);
-        LFVAddsheet.getRow(2).createCell(0).setCellValue("Recipe Category(Breakfast/lunch/snack/dinner)");
-        LFVAddsheet.createRow(3);
-        LFVAddsheet.getRow(3).createCell(0).setCellValue("Food Category");
-        LFVAddsheet.createRow(4);
-        LFVAddsheet.getRow(4).createCell(0).setCellValue("Ingredients");
-        LFVAddsheet.createRow(5);
-        LFVAddsheet.getRow(5).createCell(0).setCellValue("Preparation Time");
-        LFVAddsheet.createRow(6);
-        LFVAddsheet.getRow(6).createCell(0).setCellValue("Cooking Time");
-        LFVAddsheet.createRow(7);
-        LFVAddsheet.getRow(7).createCell(0).setCellValue("Tag");
-        LFVAddsheet.createRow(8);
-        LFVAddsheet.getRow(8).createCell(0).setCellValue("No of servings");
-        LFVAddsheet.createRow(9);
-        LFVAddsheet.getRow(9).createCell(0).setCellValue("Cuisine category");
-        LFVAddsheet.createRow(10);
-        LFVAddsheet.getRow(10).createCell(0).setCellValue("Recipe Description");
-        LFVAddsheet.createRow(11);
-        LFVAddsheet.getRow(11).createCell(0).setCellValue("Preparation method");
-        LFVAddsheet.createRow(12);
-        LFVAddsheet.getRow(12).createCell(0).setCellValue("Nutrient values");
-        LFVAddsheet.createRow(13);
-        LFVAddsheet.getRow(13).createCell(0).setCellValue("Recipe URL");
-        
-        
+                
       //Read Elimination data from excel and store it into arraylist
       		this.read_LFV_Elimination_Excel();
       		
       		//Read Add data from excel and store it into arraylist
-      		this.read_LFV_Add_Excel();
+      		//this.read_LFV_Add_Excel();
 		 //Getting all the alphabets list
 		List<WebElement> menuAtoZWebElements=driver.findElements(By.xpath("//table[@class='mnualpha ctl00_cntleftpanel_mnuAlphabets_5 ctl00_cntleftpanel_mnuAlphabets_2']/tbody/tr/td[@onmouseover='Menu_HoverStatic(this)']//a[1]"));
 		
@@ -323,70 +282,47 @@ public class LFV_AtoE_Recipes extends TestBase {
 								}
 							
 							
-								//Creating arraylist which contains all the details of the recipe
-								 String[] recipe_details = new String[] {recipe_id, recipe_name,rec_Category,food_Category,ingredientsValue,
-											prepTime,cookTime, tags, noOfServings, cuisineCategory, desc,method, nutritionValue,stringurl };
-							
-							
-							//If recipe is valid then fetch all the recipe details
-								 if(validRecipe)
-									{
-										System.out.println("------ Valid Recipes of LFV after elimination --------");									
-										 LFVsheet.getRow(0).createCell(column).setCellValue(recipe_id);
-						                 LFVsheet.getRow(1).createCell(column).setCellValue(recipe_name);
-						                 LFVsheet.getRow(2).createCell(column).setCellValue(rec_Category);
-						                 LFVsheet.getRow(3).createCell(column).setCellValue(food_Category);
-						                 LFVsheet.getRow(4).createCell(column).setCellValue(ingredientsValue);
-						                 LFVsheet.getRow(5).createCell(column).setCellValue(prepTime);
-						                 LFVsheet.getRow(6).createCell(column).setCellValue(cookTime);
-						                 LFVsheet.getRow(7).createCell(column).setCellValue(tags);
-						                 LFVsheet.getRow(8).createCell(column).setCellValue(noOfServings);
-						                 LFVsheet.getRow(9).createCell(column).setCellValue(cuisineCategory);
-						                 LFVsheet.getRow(10).createCell(column).setCellValue(desc);
-						                 LFVsheet.getRow(11).createCell(column).setCellValue(method);
-						                 LFVsheet.getRow(12).createCell(column).setCellValue(nutritionValue);
-						                 LFVsheet.getRow(13).createCell(column).setCellValue(stringurl);
-						                 column++;
-									}
+								
 								 
-								 boolean addValidRecipe=false;
+								 boolean allergyValidRecipe=true;
 								 if(validRecipe) 
 									{
-										//Retrieve data from Add arraylist using for loop, 
-										for(String addItem: LFV_AddItemList) 
-										{								
+																	
 											//Then compare each value with Ingredients.
-											if(ingredientsValue.contains(addItem))
+											if(ingredientsValue.contains("milk"))
 												{
-												System.out.println("Item valid: " +addItem);
-												addValidRecipe = true;
+												allergyValidRecipe = false;
 												break;
 												}	
 											else
 												{
-												addValidRecipe = false;
+												allergyValidRecipe = true;
 											
 												}
-										}
+										
 									}//end of add item if statement
-								 
-								 if(addValidRecipe) {
-									 System.out.println("------ Valid Recipes of LFV Add Item list --------");									
-									 LFVAddsheet.getRow(0).createCell(AddColumn).setCellValue(recipe_id);
-					                 LFVAddsheet.getRow(1).createCell(AddColumn).setCellValue(recipe_name);
-					                 LFVAddsheet.getRow(2).createCell(AddColumn).setCellValue(rec_Category);
-					                 LFVAddsheet.getRow(3).createCell(AddColumn).setCellValue(food_Category);
-					                 LFVAddsheet.getRow(4).createCell(AddColumn).setCellValue(ingredientsValue);
-					                 LFVAddsheet.getRow(5).createCell(AddColumn).setCellValue(prepTime);
-					                 LFVAddsheet.getRow(6).createCell(AddColumn).setCellValue(cookTime);
-					                 LFVAddsheet.getRow(7).createCell(AddColumn).setCellValue(tags);
-					                 LFVAddsheet.getRow(8).createCell(AddColumn).setCellValue(noOfServings);
-					                 LFVAddsheet.getRow(9).createCell(AddColumn).setCellValue(cuisineCategory);
-					                 LFVAddsheet.getRow(10).createCell(AddColumn).setCellValue(desc);
-					                 LFVAddsheet.getRow(11).createCell(AddColumn).setCellValue(method);
-					                 LFVAddsheet.getRow(12).createCell(AddColumn).setCellValue(nutritionValue);
-					                 LFVAddsheet.getRow(13).createCell(AddColumn).setCellValue(stringurl);
-					                 AddColumn++;
+								
+								//If recipe is valid then fetch all the recipe details
+								 if(allergyValidRecipe) {
+									 System.out.println("------ Valid Recipes for Allergy Milk --------");									
+									
+									 									
+											 LFVsheet.getRow(0).createCell(column).setCellValue(recipe_id);
+							                 LFVsheet.getRow(1).createCell(column).setCellValue(recipe_name);
+							                 LFVsheet.getRow(2).createCell(column).setCellValue(rec_Category);
+							                 LFVsheet.getRow(3).createCell(column).setCellValue(food_Category);
+							                 LFVsheet.getRow(4).createCell(column).setCellValue(ingredientsValue);
+							                 LFVsheet.getRow(5).createCell(column).setCellValue(prepTime);
+							                 LFVsheet.getRow(6).createCell(column).setCellValue(cookTime);
+							                 LFVsheet.getRow(7).createCell(column).setCellValue(tags);
+							                 LFVsheet.getRow(8).createCell(column).setCellValue(noOfServings);
+							                 LFVsheet.getRow(9).createCell(column).setCellValue(cuisineCategory);
+							                 LFVsheet.getRow(10).createCell(column).setCellValue(desc);
+							                 LFVsheet.getRow(11).createCell(column).setCellValue(method);
+							                 LFVsheet.getRow(12).createCell(column).setCellValue(nutritionValue);
+							                 LFVsheet.getRow(13).createCell(column).setCellValue(stringurl);
+							                 column++;
+										
 								 }
 									 
 									 
