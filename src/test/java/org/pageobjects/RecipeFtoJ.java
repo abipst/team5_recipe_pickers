@@ -1,4 +1,4 @@
-package recipe_scrapping;
+package org.pageobjects;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +35,7 @@ import base.TestBase;
 import pages.HomePage;
 import utils.ExcelReaderCode;
 
-public class Recipes_FtoJ extends TestBase{
+public class RecipeFtoJ extends TestBase{
 
 	List<String> LFV_EliminateItemList = new ArrayList<String>();
 	
@@ -48,7 +48,7 @@ public class Recipes_FtoJ extends TestBase{
 	List<String> cuisineDataList = new ArrayList<String>();
 
 	
-	public Recipes_FtoJ (WebDriver driver) {
+	public RecipeFtoJ (WebDriver driver) {
 	  
 	  PageFactory.initElements(driver,this); 
 	  
