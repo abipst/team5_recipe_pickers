@@ -1,10 +1,19 @@
 package org.pageobjects;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,14 +25,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import base.TestBase;
-import pages.Recipe;
 import utils.ExcelReaderCode;
-import utils.ExcelUtility;
 
 public class RecipeKtoO  extends TestBase{
 
 	List<String> LFV_EliminateItemList=new ArrayList<String>();
 	List<String> LFV_AddItemList=new ArrayList<String>();
+	
+	List<String> LCHF_EliminateItemList = new ArrayList<String>();	
+	List<String> LCHF_AddItemList = new ArrayList<String>();
+	
+	List<String> cuisineDataList = new ArrayList<String>();
+	String rec_Category;
+	String food_Category;
+	String ingredient_List = "";
+	
 	
 	public RecipeKtoO(WebDriver driver) 
 	{
@@ -43,41 +59,65 @@ public class RecipeKtoO  extends TestBase{
 	public void getRecipeInfo() throws Exception {
 				
 		List<WebElement> menuAtoZWebElements=driver.findElements(By.xpath("//table[@class='mnualpha ctl00_cntleftpanel_mnuAlphabets_5 ctl00_cntleftpanel_mnuAlphabets_2']/tbody/tr/td[@onmouseover='Menu_HoverStatic(this)']//a[1]"));
-		
-		List<Recipe> recipeList = new ArrayList<Recipe>();
-		
+						
 		//Read Elimination data from excel and store it into arraylist
 		this.read_LFV_Elimination_Excel();
-		
-		//Read Add data from excel and store it into arraylist
 		this.read_LFV_Add_Excel();
 		
+		this.read_LCHF_Elimination_Excel();
+		this.read_LCHF_Add_Excel();
+		
+		this.read_CuisineCategoryData_Excel();
+		
+		
+		
+		Map<String, Object[]> recipes_LCHF_Elimination = new TreeMap<String, Object[]>(); 
+		
+		Map<String, Object[]> recipes_LFV_Elimination = new TreeMap<String, Object[]>(); 
+		
+		Map<String, Object[]> recipes_LCHF_Add = new TreeMap<String, Object[]>(); 
+		
+		Map<String, Object[]> recipes_LFV_Add = new TreeMap<String, Object[]>();
+		
 		int size=menuAtoZWebElements.size();
+		
+		int LCHFCounter = 1;
+		
+		int LFVCounter = 1;
+		
 		System.out.println("There are "+size+" number of links ordered alphabetically.");
-		int counter=0;
-		for(int i=15; i<16; i++) 
+		
+		//Recipes from K to O
+		for(int i=12; i<13; i++) 
 		{
-			//String menuLink=driver.findElement(By.xpath("//table[@id='ctl00_cntleftpanel_mnuAlphabets']/tbody/tr/td[@id='ctl00_cntleftpanel_mnuAlphabetsn"+i+"']//a")).getAttribute("href");
-			//System.out.println(menuLink);
 			WebElement AlphabetLink=driver.findElement(By.xpath("//table[@id='ctl00_cntleftpanel_mnuAlphabets']/tbody/tr/td[@id='ctl00_cntleftpanel_mnuAlphabetsn"+i+"']//a"));
 			String alphabet=AlphabetLink.getText();
 			System.out.println("----- Starts with alphabet : "+alphabet+"  ------------");
 			AlphabetLink.click();
 			List<WebElement> pages = driver.findElements(By.xpath("//div[@style='text-align:right;padding-bottom:15px;'][1]/a"));
 			driver.findElement(By.xpath("//div[@id='maincontent']/div/div[@style='text-align:right;padding-bottom:15px;'][1]/a"));
-			if(alphabet.equals("P"))
+			if(alphabet.equals("O"))
+			 {
+				pageCount=14;
+			 }
+			else if(alphabet.equals("N"))
 			 {
 				pageCount=9;
 			 }
 			
 			else 
 			  {
-				String s=driver.findElement(By.xpath("//div[@style='text-align:right;padding-bottom:15px;'][1]/a[15]")).getText();
-				pageCount=Integer.parseInt(s);
-				System.out.println("Toal page count is: "+pageCount);
+				try {
+					String s=driver.findElement(By.xpath("//div[@style='text-align:right;padding-bottom:15px;'][1]/a[15]")).getText();
+					pageCount=Integer.parseInt(s);
+					System.out.println("Toal page count is: "+pageCount);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				
 			  }
 				
-			for(int pg=1; pg<3/*pageCount*/; pg++) 
+			for(int pg=1; pg<pageCount; pg++) 
 			 {
 				try 
 				 {
@@ -104,41 +144,92 @@ public class RecipeKtoO  extends TestBase{
 					
 					for(Object eachRecipe:links)
 					  {
-						//System.out.println("Counter: "+counter);
 						
-						//if(counter <= 10)
-						//{							
-							//counter= counter + 1;
 						try 
 						 {
 							Document doc=Jsoup.connect((String)eachRecipe).timeout(1000*100).get();
-							String stringurl=eachRecipe.toString();
+							String recipeURL = eachRecipe.toString();
 							//System.out.println("Recipe URL : "+stringurl);
-							String id=stringurl.substring(stringurl.lastIndexOf("-")+1);
-							String recipe_id=id.substring(0,id.length()-1);
+							String id = recipeURL.substring(recipeURL.lastIndexOf("-")+1);
 							
-							//String recipe_name = 
-							//System.out.println("Recipe_id: "+recipe_id);
-							// fetching recipe prep time, cook time and servings
-							//prep time
-							Elements preptimeEle=doc.selectXpath("//time[@itemprop='prepTime']");
-							String prepTime=preptimeEle.text();
+							String recipe_id = id.substring(0,id.length()-1);
+							
+							//recipe name
+							String recipeName = doc.selectXpath("//span[@id='ctl00_cntrightpanel_lblRecipeName']").text();
+							
+							// fetching recipe details
+							//preparation time
+							Elements preptimeEle = doc.selectXpath("//time[@itemprop='prepTime']");
+							String prepTime = preptimeEle.text();
+							
 							//cooking time
-							Elements cookTimeEle=doc.selectXpath("//time[@itemprop='cookTime']");
+							Elements cookTimeEle = doc.selectXpath("//time[@itemprop='cookTime']");
 							String cookTime = cookTimeEle.text();
+							
 							//No of servings
-							Elements noOfServingsEle=doc.selectXpath("//span[@id='ctl00_cntrightpanel_lblServes']");
+							Elements noOfServingsEle = doc.selectXpath("//span[@id='ctl00_cntrightpanel_lblServes']");
 							String Servings = noOfServingsEle.text();
-							String noOfServings=Servings.substring(1, Servings.length());
+							String noOfServings = Servings.substring(1, Servings.length());
 							
 							// fetching recipe tags
 							Elements tagEle=doc.selectXpath("//div[@id='recipe_tags']/a");
 							String tags=tagEle.text();
 							
-							// fetching Cuisine category
-							Elements cuiCatEle = doc.selectXpath("//div[@id='show_breadcrumb']/div/span[5]/a");
-							String category=cuiCatEle.text();
+							//Recipe category
+							rec_Category = "";
+							if (tags.contains("breakfast")) {
+								rec_Category = "Breakfast";
+								break;
+							} else if (tags.contains("dinner")) {
+								rec_Category = "Dinner";
+								break;
+							} else if (tags.contains("snack")) {
+								rec_Category = "Snacks";
+								break;
+							}
+							else if (tags.contains("lunch")) {
+								rec_Category = "Lunch";
+								break;
+							}
+							else
+							rec_Category = "Not mentioned";
 							
+							
+							//Food Category
+							food_Category = "";
+							if ((tags.contains("veg")) && (!tags.contains("non veg")||!tags.contains("non-veg"))) {
+								food_Category = "Vegetarian";
+								break;
+							} else if (tags.contains("non veg")||tags.contains("non-veg")) {
+								food_Category = "Non-Vegetarian";
+								break;
+							} else if (tags.contains("egg")) {
+								food_Category = "Eggitarian";
+								break;
+							} else if (tags.contains("jain")) {
+								food_Category = "Jain";
+								break;
+							}else if (tags.contains("vegan")) {
+								food_Category = "Vegan";
+								break;
+							}	
+							else
+							food_Category = "Not mentioned";
+						
+                             
+							// fetching Cuisine category
+							String cuisineCategory = "";
+							for(String cuisine : cuisineDataList) {		
+							if(tags.contains(cuisine)) {
+								cuisineCategory = cuisine;
+									break;
+									
+								} else {
+									cuisineCategory = "not available";
+								}									
+							}
+
+													
 							// fetching Recipe Description
 							Elements recDesEle = doc.selectXpath("//div[@id='recipe_details_left']/section/p/span");
 							String desc=recDesEle.text();
@@ -160,16 +251,21 @@ public class RecipeKtoO  extends TestBase{
 							Elements ingredientsEle = doc.selectXpath("//div[@id='rcpinglist']/div//a");							
 							String ingredientsValue = ingredientsEle.text();
 							
-							/*
-							  // fetching Recipe URL
-							Elements repurl = doc.selectXpath("//div[@id=");
-							String url=repurl.text();
-							*/							
+							ingredient_List="";
+							 for(Element ingredient: ingredientsEle) {
+							  ingredient_List = ingredient_List+","+ingredient.text().toLowerCase();
+							 }
+							 if(ingredient_List.isEmpty())
+								 ingredient_List=ingredient_List;
+							 else
+								 ingredient_List=ingredient_List.substring(1);				
 								
 							
 							
 							
-							boolean validRecipe = true;
+							boolean validLFVRecipe = true;
+							
+							
 							//Retrieve data from Elimination arraylist using for loop, 
 							for(String eliminatedItem: LFV_EliminateItemList) 
 							{								
@@ -177,65 +273,69 @@ public class RecipeKtoO  extends TestBase{
 								if(ingredientsValue.contains(eliminatedItem))
 								{
 									//System.out.println("Item invalid: " +eliminatedItem);
-									validRecipe = false;
+									validLFVRecipe = false;
 									break;
 								}									
 							}
 							
 							
-							if(validRecipe) 
+							if(validLFVRecipe) 
 							{
+								  recipes_LFV_Elimination.put( Integer.toString(LFVCounter) , new Object[] { recipe_id, recipeName,
+										  rec_Category, food_Category, ingredient_List, prepTime,cookTime, tags,
+										  noOfServings, cuisineCategory, desc,method, nutritionValue, recipeURL });
+
+								  
 								//Retrieve data from Add arraylist using for loop, 
 								for(String addItem: LFV_AddItemList) 
 								{								
 									//Then compare each value with Ingredients.
 									if(ingredientsValue.contains(addItem))
-										{
-										System.out.println("Item valid: " +addItem);
-										validRecipe = true;
-										break;
-										}	
-									else
-										{
-										validRecipe = false;
-									
-										}
+									{
+											System.out.println("LFV Add Item valid: " +addItem);
+											
+											recipes_LFV_Add.put( Integer.toString(LFVCounter) , new Object[] { recipe_id, recipeName,
+													  rec_Category, food_Category, ingredient_List, prepTime,cookTime, tags,
+													  noOfServings, cuisineCategory, desc,method, nutritionValue, recipeURL });
+											break;
+									}										
 								}
+																							
+								LFVCounter = LFVCounter + 1;
 							}
 							
-							if(validRecipe)
-							{
-								//Store Recipe data into Recipe object
-								Recipe recipeInfo = new Recipe();
-								recipeInfo.setRecipe_id(recipe_id);
-								recipeInfo.setRecipe_name(recipe_id);
-								recipeInfo.setRecipe_Description(desc);
-								recipeInfo.setPrep_time(prepTime);
-								recipeInfo.setIngredients(ingredientsValue);
-								//recipeInfo.setRecipe_Description(desc);
-								//recipeInfo.setRecipe_Description(desc);
-								
-								counter= counter + 1;
-								//if(counter == 0)
-								//{
-									System.out.println("*Write to excel ");
-									ExcelUtility.storeRecipeInfo(recipeInfo, counter, 0);
-								//}
-								
-								System.out.println("*valid Recipes--Recipe URL : "+stringurl);
-								//System.out.println("Recipe URL : "+stringurl);
-								//System.out.println("Recipe_id: "+recipe_id);
-								//System.out.println("prep time is:  "+prepTime);
-								//System.out.println("cook time is : "+cookTime);
-								//System.out.println("servings : "+noOfServings);
-								//System.out.println("Tags : "+tags);
-								//System.out.println("Cuisine category : "+category);
-								//System.out.println("Recipe Description : "+desc);
-								//System.out.println("Preparation method : "+method);
-								//System.out.println("Nutrient values : "+nutritionValue);
-								//System.out.println("Ingredients : "+ingredientsValue);
-								
-							}	
+							// Iterate LCHF Elimination array list using for loop and compare each value with Ingredients to filter recipes
+							boolean validLCHFRecipe = true;
+							  for(String eliminatedItem : LCHF_EliminateItemList) {
+							  
+								  if(ingredientsValue.contains(eliminatedItem)) {
+							  
+									  validLCHFRecipe = false;
+							  
+									  break; 
+									  } 
+								  }
+							  
+							  	if(validLCHFRecipe) {
+							  
+							  		recipes_LCHF_Elimination.put( Integer.toString(LCHFCounter) , new Object[] { recipe_id, recipeName,
+							  				rec_Category, food_Category, ingredient_List, prepTime,cookTime, tags,
+							  				noOfServings, cuisineCategory, desc,method, nutritionValue, recipeURL });
+							  
+							  		for(String addItem : LCHF_AddItemList) {
+							  			
+							  			if(ingredientsValue.contains(addItem)) {
+							  				System.out.println("LCHF Add Item valid: " +addItem);
+							  				recipes_LCHF_Add.put( Integer.toString(LCHFCounter) , new Object[] { recipe_id, recipeName,
+							  						rec_Category, food_Category, ingredient_List, prepTime,cookTime, tags,
+							  						noOfServings, cuisineCategory, desc,method, nutritionValue, recipeURL });
+							  
+							  				break; 
+							  				} 
+							  			}
+							  
+							  		LCHFCounter  = LCHFCounter  + 1; 
+							  }
 							
 						 } 
 						
@@ -247,7 +347,19 @@ public class RecipeKtoO  extends TestBase{
 						
 				}//End for				
 			 }//End pagination
-			System.out.println("Total Valid Recipe = " +counter);
+			System.out.println("Total Valid LFV Recipe(Elimination Check) = " + recipes_LFV_Elimination.size());
+			System.out.println("Total Valid LFV Recipe(Add Check) = " + recipes_LFV_Add.size());
+			
+			System.out.println("Total Valid LCHF Recipe(Elimination Check) = " + recipes_LCHF_Elimination.size());
+			System.out.println("Total Valid LCHF Recipe(Add Check) = " + recipes_LCHF_Add.size());
+			
+			write_Excel(recipes_LFV_Elimination, "LFV_Elimination_KtoO");
+			
+			write_Excel(recipes_LFV_Add, "LFV_Add_KtoO");
+			
+			write_Excel(recipes_LCHF_Elimination, "LCHF_Elimination_KtoO");
+			
+			write_Excel(recipes_LCHF_Add, "LCHF_Add_KtoO");
 			
 		}
 	}
@@ -271,6 +383,98 @@ public class RecipeKtoO  extends TestBase{
 			String testData = reader.getCellData("Final list for LFV Elimination ", 1, i);
 			LFV_AddItemList.add(testData.toLowerCase());
 			//System.out.println(testData);
+		}
+	}
+	
+	public void read_LCHF_Elimination_Excel() {
+		ExcelReaderCode reader = new ExcelReaderCode("./src/test/resources/IngredientsAndComorbidities-ScrapperHackathon.xlsx");
+		Boolean sheetCheck = reader.isSheetExist("Final list for LCHFElimination ");
+		System.out.println("Is the Datasheet exist? -  " + sheetCheck);
+			for (int i = 3; i <= 92; i++) {
+			String testData = reader.getCellData("Final list for LCHFElimination ", 0, i);
+			LCHF_EliminateItemList.add(testData.toLowerCase());
+			//System.out.println(testData);
+		}
+	}
+	
+	public void read_LCHF_Add_Excel() {
+		ExcelReaderCode reader = new ExcelReaderCode("./src/test/resources/IngredientsAndComorbidities-ScrapperHackathon.xlsx");
+		Boolean sheetCheck = reader.isSheetExist("Final list for LCHFElimination ");
+		System.out.println("Is the Datasheet exist? -  " + sheetCheck);
+			for (int i = 3; i <= 34; i++) {
+			String testData = reader.getCellData("Final list for LCHFElimination ", 1, i);
+			LCHF_AddItemList.add(testData.toLowerCase());
+			
+		}
+	}
+	
+	public void read_CuisineCategoryData_Excel() {
+		
+		ExcelReaderCode FoodCategoryreader = new ExcelReaderCode("./src/test/resources/Recipe-filters-ScrapperHackathon.xlsx");
+		Boolean sheetCheck1 = FoodCategoryreader.isSheetExist("Food Category");
+		System.out.println("Is the Datasheet exist? -  " + sheetCheck1);
+			for (int f = 2; f <= 32; f++) {
+			String cuisineData = FoodCategoryreader.getCellData("Food Category", 1, f);
+			cuisineDataList.add(cuisineData);
+			
+			}
+	}
+	
+	public void write_Excel(Map<String, Object[]> recipeData, String sheetName) throws IOException {
+		
+		ExcelReaderCode reader = new ExcelReaderCode("./src/test/resources/Scrapped_Recipes_KtoO.xlsx");
+		
+		Boolean sheetCheck = reader.isSheetExist(sheetName);
+		
+		System.out.println("Is the  test Datasheet exist? -  " + sheetCheck);
+		
+		String path = System.getProperty("user.dir")+"/src/test/resources/Scrapped_Recipes_KtoO.xlsx";
+		
+		File Excelfile = new File(path);
+		
+		FileInputStream Fis = new FileInputStream(Excelfile);
+		
+		XSSFWorkbook workbook = new XSSFWorkbook(Fis);
+		
+		XSSFSheet worksheet = workbook.getSheet(sheetName);
+		
+	    Set<String> keyid = recipeData.keySet();
+	      
+	        // writing the data into the mentioned worksheet
+	 
+	        int cellid = 1;
+	       
+	        for (String key : keyid) {
+	  		 
+	        	int rowid =0;
+	        	
+	            Object[] objectArr = recipeData.get(key);
+	          
+	            for (Object obj : objectArr) {
+	            	
+	            	XSSFCell cell = worksheet.getRow(rowid++).createCell(cellid);
+	            	
+	                cell.setCellValue((String)obj);
+	            }
+	            cellid++;
+	        }
+	 
+		FileOutputStream Fos=null;
+		
+		try {
+			 Fos = new FileOutputStream(Excelfile);
+			
+			 workbook.write(Fos);
+			
+			 workbook.close();
+			
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		finally {
+			
+			Fos.close();
 		}
 	}
 	
