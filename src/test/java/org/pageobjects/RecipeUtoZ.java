@@ -25,12 +25,12 @@ import org.openqa.selenium.support.PageFactory;
 import base.TestBase;
 import utils.ExcelReaderCode;
 
-public class RecipeAtoE  extends TestBase{
+public class RecipeUtoZ  extends TestBase{
 	
 	List<String> LFV_EliminateItemList=new ArrayList<String>();
 	List<String> LCH_EliminateItemList=new ArrayList<String>();
 	 
-	public RecipeAtoE(WebDriver driver) {
+	public RecipeUtoZ(WebDriver driver) {
 		System.out.println("Hi");
 		PageFactory.initElements(driver,this);
 	}
